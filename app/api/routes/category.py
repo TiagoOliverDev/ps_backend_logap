@@ -8,7 +8,7 @@ from app.api.dependencies import get_db
 
 router = APIRouter()
 
-@router.post("/criar", response_model=Category)
+@router.post("/cadastrar", response_model=Category)
 def create_category(category_data: CategoryCreate, db: Session = Depends(get_db)):
     category_service = CategoryService(db)
     return category_service.create_category(category_data)
