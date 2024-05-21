@@ -1,4 +1,4 @@
-from typing import List
+# app/schemas/product_schema.py
 from pydantic import BaseModel
 
 class ProductBase(BaseModel):
@@ -6,14 +6,15 @@ class ProductBase(BaseModel):
     purchase_price: float
     quantity: int
     sale_price: float
+
+class ProductCreate(ProductBase):
     category_id: int
     supplier_id: int
 
-class ProductCreate(ProductBase):
-    pass
-
 class Product(ProductBase):
     id: int
+    category_id: int
+    supplier_id: int
 
     class Config:
         from_attributes = True

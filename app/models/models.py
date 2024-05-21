@@ -1,5 +1,5 @@
 # app/models.py
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, DECIMAL, Float
 from sqlalchemy.orm import relationship
 from app.db.database import Base
 
@@ -22,9 +22,9 @@ class Product(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
-    purchase_price = Column(Float)
+    purchase_price = Column(DECIMAL(10, 2))
     quantity = Column(Integer)
-    sale_price = Column(Float)
+    sale_price = Column(DECIMAL(10, 2))
     category_id = Column(Integer, ForeignKey("categories.id"))
     supplier_id = Column(Integer, ForeignKey("suppliers.id"))
 
