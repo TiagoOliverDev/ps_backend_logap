@@ -58,17 +58,14 @@ class SupplierRepository:
             self.db.rollback()
             raise ValueError(f"Error updating supplier with ID {supplier_id}: {e}")
 
-    def get_all(self, skip: int = 0, limit: int = 10) -> list:
-        """Retrieves all suppliers from the database with pagination.
-        
-        Args:
-            skip (int): Number of entries to skip (for pagination).
-            limit (int): Maximum number of entries to return.
-        
-        Returns:
-            list: A list of suppliers.
+    def get_all(self):
         """
-        return self.db.query(Supplier).offset(skip).limit(limit).all()
+        Retrieves all suppliers from the database up to a specified limit.
+
+        Returns:
+            list of Supplier: A list of suppliers.
+        """
+        return self.db.query(Supplier).all()
     
     def get_by_id(self, supplier_id: int) -> Supplier:
         """Fetches a single supplier by its ID.

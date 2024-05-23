@@ -73,24 +73,14 @@ class SupplierService:
             raise NotFoundError("Supplier", supplier_id)
         return supplier
 
-    def get_suppliers(self, skip: int = 0, limit: int = 10) -> list:
+    def get_suppliers(self) -> list:
         """
-        Retrieves a list of suppliers, supporting pagination.
-
-        Args:
-            skip (int): The number of items to skip (for pagination).
-            limit (int): The maximum number of items to return.
+        Retrieves a list of suppliers with an optional limit on the number of results.
 
         Returns:
             list of Supplier: A list of suppliers.
-
-        Raises:
-            DatabaseOperationError: If a database error occurs during retrieval.
         """
-        try:
-            return self.repository.get_all(skip, limit)
-        except SQLAlchemyError as e:
-            raise DatabaseOperationError(e)
+        return self.repository.get_all()
 
     def delete_supplier(self, supplier_id: int) -> bool:
         """
