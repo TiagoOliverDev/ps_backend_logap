@@ -1,1 +1,1 @@
-web: python server.py runserver %PORT%
+web: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app
