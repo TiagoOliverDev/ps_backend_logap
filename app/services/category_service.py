@@ -100,3 +100,19 @@ class CategoryService:
             return self.repository.delete(category_id)
         except SQLAlchemyError as e:
             raise Exception(f"Failed to delete category due to database error: {e}")
+        
+    def get_category_id_and_names(self) -> list:
+        """
+        Retrieves the IDs and names of all categories from the repository.
+
+        Returns:
+            list of tuples: A list of tuples, each containing the ID and name of a category.
+
+        Raises:
+            Exception: Generic exception if any error occurs during the database operation.
+        """
+        try:
+            return self.repository.get_category_id_and_names()
+        except Exception as e:
+            raise Exception(f"An error occurred while retrieving category IDs and names: {e}")
+

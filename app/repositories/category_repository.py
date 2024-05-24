@@ -115,3 +115,19 @@ class CategoryRepository:
             return False
         except SQLAlchemyError as e:
             raise SQLAlchemyError(f"Failed to delete category due to: {e}")
+        
+    def get_category_id_and_names(self) -> list:
+        """
+        Retrieves the IDs and names of all categories.
+
+        Returns:
+            list of tuples: A list of tuples, where each tuple contains (id, name) of a category.
+
+        Raises:
+            SQLAlchemyError: If a database operation fails.
+        """
+        try:
+            categories = self.db.query(Category.id, Category.name).all()
+            return categories
+        except SQLAlchemyError as e:
+            raise SQLAlchemyError(f"Failed to retrieve category IDs and names due to: {e}")

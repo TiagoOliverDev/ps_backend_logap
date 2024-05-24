@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Response
-from typing import List
+from typing import List, Tuple
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from app.schemas.category_schema import Category, CategoryCreate
@@ -112,3 +112,21 @@ def delete_category(category_id: int, db: Session = Depends(get_db)) -> Response
     if not category_service.delete_category(category_id):
         raise HTTPException(status_code=404, detail="Categoria não encontrada")
     return Response(status_code=204)
+
+@router.get("/categorias/nomes", response_model=List[Tuple[int, str]])
+def get_category_id_and_names(db: Session = Depends(get_db)) -> List:
+    """
+    Retrieve a list of category IDs and names.
+
+    Returns:
+        List[Tuple[int, str]]: A list of tuples, each containing the ID and name of a category.
+
+    Raises:
+        HTTPException: 500 error if there is a problem retrieving the category names.
+    """
+    category_service = CategoryService(db)
+    try:
+        category_id_and_names = category_service.get_category_id_and_names()
+        return category_id_and_names
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve category names: {e}")
