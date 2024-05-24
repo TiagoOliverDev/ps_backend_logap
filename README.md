@@ -151,12 +151,12 @@ Usei as seguintes tecnologias:
   Rode com:
 
   ```
-  python python -m unittest tests.teste_category
+  python -m unittest tests.teste_category
 
   ```
 
   ```
-  python python -m unittest tests.teste_category
+  python -m unittest tests.teste_category
 
   ```
 
