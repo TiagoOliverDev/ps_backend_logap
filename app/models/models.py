@@ -1,4 +1,3 @@
-# app/models.py
 from sqlalchemy import Column, Integer, String, ForeignKey, DECIMAL, Float
 from sqlalchemy.orm import relationship
 from app.db.database import Base
