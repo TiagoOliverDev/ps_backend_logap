@@ -139,6 +139,12 @@ Usei as seguintes tecnologias:
 
 <hr/>
 
+
+## OBSERVAÇÃO: A questão 1 do teste pode ser resolvido via /docs no endpoint /teste
+
+![background](https://github.com/TiagoOliverDev/ps_backend_logap/blob/main/app/imgs/image.png)
+
+
 ## AINDA NÃO ACABOU! Tem os testes unitários básicos!
 
 
