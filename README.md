@@ -1,39 +1,167 @@
-## Tarefa 1: Desenvolver uma API
+<h1 align="center">API Backend Teste Logap</h1>
 
-Você deverá desenvolver uma API (Restful) simples que receba uma requisição HTTP com uma string, e encontre o primeiro caractere Vogal, após uma consoante, onde a mesma é antecessora a uma vogal e que não se repita na string.
+Backend 
 
-Premissas:
+<hr/>
 
-Não será possível reiniciar o fluxo da leitura da string.
-Na tarefa 1 não poderá ser utilizado nenhuma lib, apenas código nativo na identificação da vogal.
+# Documentação SWAGGER integrada ( acessar em /docs )
 
-Exemplo:
+![background](https://github.com/TiagoOliverDev/ps_backend_logap/blob/main/app/imgs/docApi.png)
 
-Input: aAbBABacafe
-Output: e
+<hr/>
 
-No exemplo, ‘e’ é o primeiro caractere Vogal da stream que não se repete após a primeira Consoante ‘f’ o qual tem uma vogal ‘a’ como antecessora.
+# Design Patterns utilizado
 
-E o resultado do processamento deverá ser igual à:
-```json
-{
-  "string": " aAbBABacafe",
-  "vogal": "e",
-  "tempoTotal": "10ms"
-}
+Basicamente foi usado um tipo de MVC.
+
+- Model representado pelo uso do SQLAlchemy
+- Service funcionando como uma ponte entre os Controllers e o Repository
+- Endpoints separados por módulos
+- Repository que funciona como uma abstração do acesso aos dados, que facilita a comunicação com o banco de dados e realiza as querys
+- Views retornando dados de requisições em formato JSON
+- migrations com alembic
+
+
+# Padrão de pastas
+
 ```
+    ps_backend_logap/
+    ├── alembic/
+    ├── app/
+    │   ├── __init__.py
+    │   ├── api/
+    │   └──── routes/
+    │   ├── db/
+    │   └── ...
+    │   ├── imgs/
+    │   └── ...
+    │   ├── models/
+    │   └── ...
+    │   └── repositories/
+    │   └── ...
+    │   └── schemas/
+    │   └── services/
+    │   └── exceptions.py
+    │   └── main.py
+    ├── venv/
+    │   └── ...
+    ├── tests/
+    │   └── ...
+    ├── .env
+    ├── .gitignore
+    ├── alembic.ini
+    ├── Dockerfile
+    └── README.md
+    ├── requirements.txt
+    ├── server.py
+ ```
 
-## Tarefa 2: Criar uma aplicação Web
+# Features gerais
 
-Como de costume, o setor de vendas está precisando melhorar a gestão dos produtos em estoque, e você poderá ajudar eles. Cada produto possui um nome, um valor de compra, a categoria a qual ele pertence (Frutas, Cereais, Legumes…) e o fornecedor do produto (empresa). 
 
-Seu trabalho será criar uma aplicação Web para que os responsáveis pelo setor de vendas possam: catalogar e gerenciar os produtos vendidos pela empresa, atualizar o estoque com a quantidade disponível e o valor para venda e gerar um relatório informativo sobre o setor. O relatório deve apresentar em forma de tabelas os seguintes dados: 
-- Listagem das categorias juntamente com suas quantidades totais de produtos em estoque;
-- Listagem dos produtos que estão faltando em estoque;
-- Listagem dos fornecedores que possuem produtos faltando em estoque;
+- Crud completo de categorias
+- Crud completo de fornecedores
+- Crud completo de produtos
 
-**Obs:** As tarefas 1 e 2 deverão ser desenvolvidas dentro da mesma aplicação Web.
 
-``A modelagem dos problemas e a organização (código, repositório, interface gráfica...), serão considerados na pontuação do processo seletivo.``
+<hr/>
 
-``Você deverá hospedar a tarefa na nuvem e enviar por email as instruções necessárias para para acesso da aplicação. Também deverá ser enviado o link do repositório que se encontra o código fonte.``
+# Tecnologias
+
+Usei as seguintes tecnologias:
+
+- Python >= 3.10.11
+- FastApi
+- Sqllite 
+- SQLAlchemy
+- swagger
+- unitest
+- uvicorn
+
+<hr/>
+
+# Passos para rodar o projeto
+
+## Step 1: Clone o repositório
+
+- Crie uma pasta na sua maquína local e copia o repositório
+
+- Clone [repository](https://github.com/TiagoOliverDev/ps_backend_logap.git) na sua pasta
+
+  ```
+  git clone https://github.com/TiagoOliverDev/ps_backend_logap.git
+  ```
+
+- Navegue até o diretório `cd ps_backend_logap`
+
+## Step 2: Criar uma env
+
+# # windows
+
+ python -m venv nome_da_env
+
+ nome_da_env/Scripts/activate
+
+ pip install -r requirements.txt
+
+
+# # Linux
+
+ python3 -m venv meu_venv
+
+ source meu_venv/bin/activate
+
+ pip install -r requirements.txt
+
+
+## Step 3: Criar migrations 
+
+  ```
+  alembic revision --autogenerate -m "initial migration"
+
+  alembic upgrade head
+  ```
+
+
+## Step 5: Rodar API
+
+  Rode o comando para startar a API:
+
+  ```
+  python server.py
+  ```
+
+# Agora pode acessar o link abaixo e testar a API via interface Swagger (se quiser)
+
+  ```
+  http://localhost:1010/swagger
+  ```
+
+<hr/>
+
+## AINDA NÃO ACABOU! Tem os testes unitários básicos!
+
+
+  Rode com:
+
+  ```
+  python .\tests\test_routes.py
+  ```
+
+  ```
+  python .\tests\test_routes.py
+  ```
+
+## Autor
+
+:man: **Tiago Oliveira**
+
+- [GitHub](https://github.com/TiagoOliverDev/)
+- [LinkedIn](https://www.linkedin.com/in/tiago-oliveira-49a2a6205/)
+
+## 🤝 Contribua
+- Contribuições, issues, e feature são bem vindas!
+- Clique aqui para criar uma issue [issues page](https://github.com/TiagoOliverDev/ps_backend_logap/issues).
+
+# Gostou do projeto ?
+Der ⭐ se gostou!
