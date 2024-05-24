@@ -151,11 +151,13 @@ Usei as seguintes tecnologias:
   Rode com:
 
   ```
-  python .\tests\test_routes.py
+  python python -m unittest tests.teste_category
+
   ```
 
   ```
-  python .\tests\test_routes.py
+  python python -m unittest tests.teste_category
+
   ```
 
 ## Autor
