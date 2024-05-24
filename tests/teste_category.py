@@ -1,46 +1,58 @@
-import requests
+import unittest
+from unittest.mock import patch, MagicMock
+from fastapi import HTTPException
+from fastapi.testclient import TestClient
+from sqlalchemy.orm import Session
 
-# Configuração inicial
-BASE_URL = "http://localhost:8080/categories"
+from app.main import app
 
-def test_create_category():
-    """Testa a criação de uma nova categoria."""
+client = TestClient(app)
 
-    new_category = {"name": "Liquidos"}
-    response = requests.post(f"{BASE_URL}/criar", json=new_category)
-    print("Create Response:", response.text)
-    category_id = response.json()['id']
-    print('res:', category_id)
+class TestCategoryEndpoints(unittest.TestCase):
+    @patch('app.api.dependencies.get_db')
+    def test_create_category(self, mocked_get_db):
+        db = MagicMock()
+        mocked_get_db.return_value = db
+        db.commit = MagicMock()
 
-def test_get_category(category_id):
-    """Testa a obtenção de uma categoria pelo ID."""
-    response = requests.get(f"{BASE_URL}/{category_id}")
-    print("Read Status Code:", response.status_code)
-    print("Read Response:", response.text)
+        response = client.post("/categories/cadastrar", json={"name": "Eletrônicos", "description": "Categoria de produtos eletrônicos"})
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.json()['name'], 'Eletrônicos')
 
-def test_update_category(category_id):
-    """Testa a atualização de uma categoria."""
-    update_data = {"name": "Cereal Atualizado"}
-    response = requests.put(f"{BASE_URL}/editar/{category_id}", json=update_data)
-    print("Update Status Code:", response.status_code)
-    print("Update Response:", response.text)
+    @patch('app.api.dependencies.get_db')
+    def test_read_category(self, mocked_get_db):
+        db = MagicMock()
+        mocked_get_db.return_value = db
 
-def test_list_categories():
-    """Testa a listagem de todas as categorias."""
-    response = requests.get(f"{BASE_URL}/listagem")
-    print("List Status Code:", response.status_code)
-    print("List Response:", response.text)
+        response = client.get("/1")
+        self.assertEqual(response.status_code, 200)
 
-def test_delete_category(category_id):
-    """Testa a exclusão de uma categoria."""
-    response = requests.delete(f"{BASE_URL}/delete/{category_id}")
-    print("Delete Status Code:", response.status_code)
-    print("Delete Response:", response.status_code)
+    @patch('app.api.dependencies.get_db')
+    def test_read_categories(self, mocked_get_db):
+        db = MagicMock()
+        mocked_get_db.return_value = db
 
+        response = client.get("/categorias/listagem")
+        self.assertEqual(response.status_code, 200)
+        self.assertIsInstance(response.json(), list)
 
-if __name__ == "__main__":
-    # category_id = test_create_category()  # Criação e retenção do ID para futuros testes
-    # test_get_category(2)                  # Teste de leitura da categoria
-    # test_update_category(2)     # Teste de atualização da categoria
-    # test_list_categories()                # Teste de listagem de todas as categorias
-    test_delete_category(2)     # Teste de exclusão da categoria
+    @patch('app.api.dependencies.get_db')
+    def test_update_category(self, mocked_get_db):
+        db = MagicMock()
+        mocked_get_db.return_value = db
+        db.commit = MagicMock()
+
+        response = client.put("/editar/1", json={"name": "Livros", "description": "Categoria de livros"})
+        self.assertEqual(response.status_code, 200)
+
+    @patch('app.api.dependencies.get_db')
+    def test_delete_category(self, mocked_get_db):
+        db = MagicMock()
+        mocked_get_db.return_value = db
+        db.commit = MagicMock()
+
+        response = client.delete("/delete/1")
+        self.assertEqual(response.status_code, 204)
+
+if __name__ == '__main__':
+    unittest.main()
