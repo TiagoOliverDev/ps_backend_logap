@@ -134,7 +134,7 @@ Usei as seguintes tecnologias:
 # Agora pode acessar o link abaixo e testar a API via interface Swagger (se quiser)
 
   ```
-  http://localhost:1010/swagger
+  http://127.0.0.1:8080/docs
   ```
 
 <hr/>
