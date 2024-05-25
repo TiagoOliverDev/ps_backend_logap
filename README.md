@@ -143,8 +143,14 @@ Usei as seguintes tecnologias:
 ![background](https://github.com/TiagoOliverDev/ps_backend_logap/blob/main/app/imgs/image.png)
 
 
-## Testes unitários básicos!
+## Testes unitários básicos de endpoints!
 
+  primeiro faça a migrations do banco de testes com o seguinte comando:
+
+  ```
+  python migration.py test
+
+  ```
 
   Rode com:
 
