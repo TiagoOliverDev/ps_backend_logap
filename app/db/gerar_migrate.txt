@@ -1,9 +1,0 @@
-alembic revision --autogenerate -m "initial migration"
-
-alembic revision --autogenerate -m "New changes to models"
-
-
-alembic upgrade head
-
-
-db: sqlite:///app/db/logapTeste.db
