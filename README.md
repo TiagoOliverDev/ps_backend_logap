@@ -117,9 +117,7 @@ Usei as seguintes tecnologias:
 ## Step 3: Criar migrations 
 
   ```
-  alembic revision --autogenerate -m "initial migration"
-
-  alembic upgrade head
+  python migration.py
   ```
 
 
