@@ -15,16 +15,16 @@ class TestCategoryEndpoints(unittest.TestCase):
         mocked_get_db.return_value = db
         db.commit = MagicMock()
 
-        response = client.post("/categories/cadastrar", json={"name": "Eletrônicos", "description": "Categoria de produtos eletrônicos"})
+        response = client.post("/categories/cadastrar", json={"name": "todes", "description": "Categoria de livros"})
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(response.json()['name'], 'Eletrônicos')
+        self.assertEqual(response.json()['name'], 'Livros')
 
     @patch('app.api.dependencies.get_db')
     def test_read_category(self, mocked_get_db):
         db = MagicMock()
         mocked_get_db.return_value = db
 
-        response = client.get("/1")
+        response = client.get("/categories/3")
         self.assertEqual(response.status_code, 200)
 
     @patch('app.api.dependencies.get_db')
@@ -32,7 +32,7 @@ class TestCategoryEndpoints(unittest.TestCase):
         db = MagicMock()
         mocked_get_db.return_value = db
 
-        response = client.get("/categorias/listagem")
+        response = client.get("/categories/categorias/listagem")
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.json(), list)
 
@@ -42,7 +42,7 @@ class TestCategoryEndpoints(unittest.TestCase):
         mocked_get_db.return_value = db
         db.commit = MagicMock()
 
-        response = client.put("/editar/1", json={"name": "Livros", "description": "Categoria de livros"})
+        response = client.put("/categories/editar/7", json={"name": "Teste", "description": "teste"})
         self.assertEqual(response.status_code, 200)
 
     @patch('app.api.dependencies.get_db')
@@ -51,7 +51,7 @@ class TestCategoryEndpoints(unittest.TestCase):
         mocked_get_db.return_value = db
         db.commit = MagicMock()
 
-        response = client.delete("/delete/1")
+        response = client.delete("/categories/delete/7")
         self.assertEqual(response.status_code, 204)
 
 if __name__ == '__main__':
