@@ -143,7 +143,7 @@ Usei as seguintes tecnologias:
 ![background](https://github.com/TiagoOliverDev/ps_backend_logap/blob/main/app/imgs/image.png)
 
 
-## AINDA NÃO ACABOU! Tem os testes unitários básicos!
+## Testes unitários básicos!
 
 
   Rode com:
