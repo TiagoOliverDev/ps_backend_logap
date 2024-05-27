@@ -61,6 +61,8 @@ Basicamente foi usado um tipo de MVC.
 - Crud completo de categorias
 - Crud completo de fornecedores
 - Crud completo de produtos
+- Dashboard
+- Relatórios
 
 
 <hr/>
