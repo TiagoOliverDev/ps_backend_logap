@@ -116,6 +116,8 @@ Usei as seguintes tecnologias:
 
 ## Step 3: Criar migrations 
 
+- OBSERVAÇÃO: para facilitar os testes não precisa gerar a migration pois subi o arquivo do banco em "app/db/prod.db" com alguns dados já inseridos
+
   ```
   python migration.py
   ```
