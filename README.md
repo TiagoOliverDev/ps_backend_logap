@@ -26,7 +26,6 @@ Basicamente foi usado um tipo de MVC.
 
 ```
     ps_backend_logap/
-    ├── alembic/
     ├── app/
     │   ├── __init__.py
     │   ├── api/
@@ -49,8 +48,8 @@ Basicamente foi usado um tipo de MVC.
     │   └── ...
     ├── .env
     ├── .gitignore
-    ├── alembic.ini
     ├── Dockerfile
+    ├── migration.py
     └── README.md
     ├── requirements.txt
     ├── server.py
@@ -58,7 +57,7 @@ Basicamente foi usado um tipo de MVC.
 
 # Features gerais
 
-
+- Autenticação JWT
 - Crud completo de categorias
 - Crud completo de fornecedores
 - Crud completo de produtos
